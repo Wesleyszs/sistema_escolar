@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema Escolar</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema Escolar</h1>
+        <div class="nav-links">
+            <a href="{{ url_for('alunos') }}">Gerenciar Alunos</a>
+            <a href="{{ url_for('disciplinas') }}">Gerenciar Disciplinas</a>
+            <a href="{{ url_for('professores') }}">Gerenciar Professores</a>
+            <a href="{{ url_for('notas') }}">Gerenciar Notas</a>
+        </div>
+    </div>
+</body>
+</html>
