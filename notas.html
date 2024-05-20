@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        form input, form button {
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Adicionar Nota</h1>
+        <form method="post" action="{{ url_for('notas') }}">
+            <label for="aluno_id">ID do Aluno:</label>
+            <input type="text" id="aluno_id" name="aluno_id" required>
+            <label for="disciplina_id">ID da Disciplina:</label>
+            <input type="text" id="disciplina_id" name="disciplina_id" required>
+            <label for="nota">Nota:</label>
+            <input type="text" id="nota" name="nota" required>
+            <button type="submit">Adicionar Nota</button>
+        </form>
+        <h1>Notas</h1>
+        <table>
+            <tr>
+                <th>Aluno</th>
+                <th>Disciplina</th>
+                <th>Nota</th>
+                <th>Ação</th>
+            </tr>
+            {% for nota in notas %}
+            <tr>
+                <td>{{ nota[1] }}</td>
+                <td>{{ nota[2] }}</td>
+                <td>{{ nota[3] }}</td>
+                <td>
+                    <form method="post" action="{{ url_for('deletar_nota_route', nota_id=nota[0]) }}" style="display:inline;">
+                        <button type="submit">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
