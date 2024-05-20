@@ -1,0 +1,9 @@
+
+Banco de Dados
+escola 
+
+
+alunos ( id , nome , data_nascimento , endereço , telefone , email)
+disciplinas (id , nome) 
+notas (aluno_id , nome_aluno , disciplina_id , nota , nome_disciplina)
+professores (id , nome , disciplina , email , telefone)
