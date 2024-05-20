@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Alunos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Gerenciar Alunos</h2>
+        <form action="/adicionar_aluno" method="post">
+            <input type="text" name="id" placeholder="ID do Aluno">
+            <input type="text" name="nome" placeholder="Nome do Aluno">
+            <input type="date" name="data_nascimento" placeholder="Data de Nascimento">
+            <input type="text" name="endereco" placeholder="Endereço">
+            <input type="text" name="telefone" placeholder="Telefone">
+            <input type="email" name="email" placeholder="Email">
+            <button type="submit">Adicionar Aluno</button>
+        </form>
+        
+        <div class="aluno-list">
+            <h3>Alunos Cadastrados</h3>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Data de Nascimento</th>
+                    <th>Endereço</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Ações</th>
+                </tr>
+                {% for aluno in alunos %}
+                <tr>
+                    <td>{{ aluno[0] }}</td>
+                    <td>{{ aluno[1] }}</td>
+                    <td>{{ aluno[2] }}</td>
+                    <td>{{ aluno[3] }}</td>
+                    <td>{{ aluno[4] }}</td>
+                    <td>{{ aluno[5] }}</td>
+                    <td>
+                        <form action="{{ url_for('deletar_aluno_route', aluno_id=aluno[0]) }}" method="post" style="display:inline;">
+                            <button class="delete-button" type="submit">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>
